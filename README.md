@@ -1,1 +1,24 @@
 # Beginning-flutter_Sitepoint_tutorial
+
+
+#LLESSON 1 =====> LEARINNIG DARTS RPOGRAMING LANGUAGE
+
+1) COMMENTS
+2) VARIABLES
+3) DATA TYPES
+4) OPERATORS
+5) CONDITIONALS
+6) LOOPS
+7) FUNCTIONS
+8) CLASSES AND OBJECTS
+9) EXCEPTION HANDLING
+10) LIBRARIES
+11) ASYNC PROGRAMMING
+
+
+
+1.0 ====> COMMENTS.
+        //single line comment
+        /*multi-line comments*/.
+
+ 
