@@ -108,4 +108,64 @@
             // filter: company
             // filter: city
             // filter: state
-        -
+
+        -Maps
+            maps are collections of key-value pairs.
+            #for example
+            // Maps - An object that associates keys and values.
+            // Key: Value - 'KeyValue': 'Value'
+            Map mapOfFilters = {'id1': 'company', 'id2': 'city', 'id3': 'state'};
+
+            // Change the value of third item with Key of id3
+            mapOfFilters['id3'] = 'my filter';
+
+            print('Get filter with id3: ${mapOfFilters['id3']}');
+            // Result from print statement
+            // Get filter with id3: my filter
+
+        -Runes 
+        
+        -Runes represent Unicode code points.
+
+4.0 =====> operators
+
+    1. Arithmetic Operators
+
+        + Addition 
+        - Subtraction
+        * Multiplication
+        / Division
+        % Modulus
+
+    2. Equality and Relational operators
+
+        == Equal to
+        != Not equal to
+        > Greater than
+        < Less than
+        <= less than or equall to
+        >= Greater than or equall to
+    
+    3. Logical Operators
+        && And
+        || Or
+        ! Not
+
+    4. Assigmrnt opperators
+        += Add and assign
+        -= Subtract and assign
+        *= Multiply and assign
+        /= Divide and assign
+        %= Modulus and assign
+
+    5. Conditional Operator
+        ? : Ternary operator
+
+
+5.0 Flow statemnts and conditionals
+
+    1.0 CCONDITIONALS.
+        -if 
+        -else if
+        -else
+    
