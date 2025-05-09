@@ -27,33 +27,24 @@ class MyApp extends StatelessWidget {
 
   const MyApp({super.key});
 
-  // This widget is the root of your application.
-  //@override is an annotation that indicates that the method is overriding a method from a superclass.Because MyApp extends StatelessWidget, it overrides the build method of the StatelessWidget class.
-  //the build method is called when the widget is inserted into the widget tree, and it is responsible for creating the widget tree that represents the user interface of the application.
-  //the build method is responsible for creating the widget tree that represents the user interface of the application.
-  //the build method returns a widget tree that consists of multiple nested widgets.
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       //removing the debug banner.
       debugShowCheckedModeBanner: false,
-      //the theme property is used to define the overall look and feel of the application. It allows you to customize various aspects of the app's appearance, such as colors, fonts, and styles.
-      //the colorScheme property is used to define a set of colors that can be used throughout the app. The seedColor parameter is used to generate a color scheme based on the specified color.
+  
       theme: ThemeData(
         
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 78, 154, 195)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 54, 104, 219)),
 
       ),
-      home: const MyHomePage(title: 'My Application'),
+      home: const MyHomePage(title: 'Registration Form'),
     );
   }
 }
-/*here we are creating a stateful widget called MyHomePage. A stateful widget is a widget that can change its state during its lifetime. It has two classes: MyHomePage and _MyHomePageState.
-the MyHomePage class is the main widget that will be displayed on the screen. It takes a title as a parameter and passes it to the _MyHomePageState class.*/
 
-//the _MyHomePageState class is where the state of the widget is managed. It contains a counter variable and methods to increment and decrement the counter. The build method is responsible for creating the UI of the widget.
-//the MyHomePage class is a stateful widget that represents the main screen of the application. It takes a title as a parameter and creates an instance of the _MyHomePageState class to manage its state.
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -67,110 +58,198 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  //controllers for the text fields
+  //the TextEditingController class is used to control the text being edited in a text field. It allows you to read and modify the text in the field.
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _dobController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController(); 
+  final TextEditingController _passwordController = TextEditingController();
+  //the initState method is called when the state object is created. It is used to initialize any data or state that the widget needs before it is built.
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  String name = '';
+  String email = '';
+  String phone = '';
+  String dob = '';
+  String address = '';
+  String password = '';
+  
 
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
-
-   @override
+  @override
   Widget build(BuildContext context) {
-    //scaffold is a widget that provides a basic structure for the app's UI. It includes an app bar, body, and floating action button.
-    
     return Scaffold(
-      //the AppBar widget is a material design app bar that displays the title of the app and provides a place for actions such as buttons and menus.
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(0, 255, 255, 255), // AppBar background remains white
+        backgroundColor: const Color.fromARGB(255, 57, 105, 196),
         title: Text(
           widget.title,
-          style: const TextStyle(color: Colors.black), // Title text color set to black
+          style: const TextStyle(color: Color.fromARGB(255, 247, 245, 245)),
         ),
-        iconTheme: const IconThemeData(color: Colors.black), // AppBar icon color set to black
+        centerTitle: true,
       ),
-      backgroundColor: Colors.transparent, // Make the Scaffold background transparent
-            body: Container(
-        // Adding an image as background
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
 
-        //the child property is used to define the content of the Scaffold's body.
-        //the Container widget is used to create a rectangular visual element that can contain other widgets.
-        child: Container(
-          // Adding a semi-transparent black overlay
-          color: Colors.black.withOpacity(0.5), // Adjust the opacity as needed
-          child: Center(
+      // Background color
+      backgroundColor: Colors.white,
+      body: Padding(
+        
+        padding: const EdgeInsets.only(top:40.0),
+        child: SingleChildScrollView(
+          child : Padding(
+            padding : const EdgeInsets.all(25.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text(
-                  'this is a simple counter app',
-                  style: TextStyle(color: Colors.white), // Text color set to white
+            //the 
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Name field
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Full Name',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide: const BorderSide(
+                      //color: Color.fromARGB(255, 57, 105, 196),
+                      //width: 2.0,
+                    ),
+                  ),
+                  
+                  prefixIcon: Icon(Icons.person),
                 ),
-                Text(
-                  '$_counter',
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        color: Colors.white, // Text color set to white
-                        fontSize: 40,
-                      ),
+              ),
+              //the sizedBox widget is used to create a fixed-size box with a specified height or width. It can be used to add space between widgets or to create a specific size for a widget.
+              SizedBox(height: 20),
+
+              //Email field
+              TextField(
+                
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide: const BorderSide(
+                      //color: Color.fromARGB(255, 57, 105, 196),
+                      //width: 2.0,
+                    ),
+                  ),
+                  prefixIcon: Icon(Icons.email),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 20),
+
+              // Phone number field
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Phone Number',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide: const BorderSide(
+                      //color: Color.fromARGB(255, 57, 105, 196),
+                      //width: 2.0,
+                    ),
+                  ),
+                  prefixIcon: Icon(Icons.phone),
+                ),
+              ),
+              SizedBox(height: 20),
+
+              //date of birth field
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Date of Birth',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide: const BorderSide(
+                      //color: Color.fromARGB(255, 57, 105, 196),
+                      //width: 2.0,
+                    ),
+                  ),
+                  prefixIcon: Icon(Icons.calendar_today),
+                ),
+              ),
+               SizedBox(height: 20),
+
+
+              //Address field
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Address',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide: const BorderSide(
+                      //color: Color.fromARGB(255, 57, 105, 196),
+                      //width: 2.0,
+                    ),
+                  ),
+                  prefixIcon: Icon(Icons.home),
+                ),
+              ),
+              SizedBox(height: 20),
+            
+              // Password field
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide: const BorderSide(
+                      //color: Color.fromARGB(255, 57, 105, 196),
+                      //width: 2.0,
+                    ),
+                  ),
+                  prefixIcon: Icon(Icons.lock),
+                ),
+              ),
+              SizedBox(height: 40),
+
+              // submit button
+              ElevatedButton(
+                onPressed: () {
+                  // Handle form submission
+                  setState(() {
+                    // Get the values from the text fields
+                    String name = _nameController.text;
+                    String email = _emailController.text;
+                    String phone = _phoneController.text;
+                    String dob = _dobController.text;
+                    String address = _addressController.text;
+                    String password = _passwordController.text;
+
+                    // Clear the text fields after submission
+                    _nameController.clear();
+                    _emailController.clear();
+                    _phoneController.clear();
+                    _dobController.clear();
+                    _addressController.clear();
+                    _passwordController.clear();
+                  });
+
+                  // Perform your form submission logic here
+                  print('Name: $name');
+                  print('Email: $email'); 
+                  print('Phone: $phone');
+                  print('Date of Birth: $dob');
+                  print('Address: $address');
+                  print('Password: $password');
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0), // Rounded corners for the button
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
+                  backgroundColor: const Color.fromARGB(255, 57, 105, 196), // Button color
+                ),
+                child: const Text(
+                  'Submit',
+                  style: TextStyle(fontSize: 18, color: Colors.white), // Text style
+                ),
+              ),
+              
+              
+            ],
           ),
+          )
         ),
       ),
-      //the floatingActionButton property is used to define a button that floats above the content of the Scaffold.
-      //the FloatingActionButton widget is a circular button that is typically used for primary actions in the app.
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Equal spacing between buttons
-        children: [
-          // Decrement Button
-          FloatingActionButton(
-            //the onPressed property is used to define the action that will be performed when the button is pressed.
-            //the tooltip property is used to provide a short description of the button's action, which is displayed when the user long-presses the button.
-            onPressed: _decrementCounter,
-            tooltip: 'Decrement',
-            backgroundColor: const Color.fromRGBO(64, 111, 197, 1), // Button background set to white
-            child: const Icon(Icons.remove, color: Color.fromARGB(255, 247, 247, 247)), // Decrement icon
-          ),
-  
-          // Reset Button
-          FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                _counter = 0; // Reset counter to zero
-              });
-            },
-            tooltip: 'Reset Counter',
-            backgroundColor: const Color.fromRGBO(64, 111, 197, 1), // Button background set to white
-            child: const Icon(Icons.delete, color: Color.fromARGB(255, 247, 247, 247)), // Trash icon
-          ),
-  
-          // Increment Button
-          FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'Increment',
-           backgroundColor: const Color.fromRGBO(64, 111, 197, 1),// Button background set to white
-            child: const Icon(Icons.add, color: Color.fromARGB(255, 254, 254, 254)), // Increment icon
-          ),
-        ],
-      ),
-      //the floatingActionButtonLocation property is used to specify the location of the floating action button within the Scaffold.
-      //the FloatingActionButtonLocation.centerFloat value positions the button at the center of the screen, floating above the content.
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

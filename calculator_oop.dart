@@ -34,14 +34,22 @@ void main() {
  */
 class CalculatorApp {
   // Private fields for calculator and UI instances
+  // These fields are final, meaning they must be initialized when the object is created
+  // and cannot be changed afterwards.
+  //the ui field is of type UserInterface, which is a class that handles user interactions.
+  //the calculator field is of type Calculator, which is a class that performs arithmetic operations.
   final Calculator _calculator;
   final UserInterface _ui;
   
   // Constructor requiring calculator and UI instances
+  //a constructor is a special method that is called when an object of the class is created.
+  //the constructor takes two parameters: _calculator and _ui, which are instances of the Calculator and UserInterface classes, respectively.
   CalculatorApp(this._calculator, this._ui);
   
   // Main method to run the calculator application
   void run() {
+    // Display welcome message
+    //the displayWelcome method is called to show a welcome message to the user.
     _ui.displayWelcome();
     
     // Get the first number from user
@@ -52,7 +60,7 @@ class CalculatorApp {
     
     // Validate input before proceeding
     if (num1 == null || num2 == null) {
-      _ui.displayMessage('Invalid input. Please enter valid numbers.');
+      _ui.displayMessage('Invalid input. Please enter valid numbers.');// If either num1 or num2 is null, an error message is displayed and the program exits.
       return;
     }
     
@@ -61,6 +69,8 @@ class CalculatorApp {
     _ui.displayMessage(''); // Empty line for better formatting
     
     // Process the user's choice
+    //the _processChoice method is called to perform the selected operation based on the user's choice.
+    //the _processChoice method takes three parameters: choice, num1, and num2.
     _processChoice(choice, num1, num2);
     
     // Offer custom divisor option
@@ -74,6 +84,8 @@ class CalculatorApp {
   void _processChoice(String? choice, double num1, double num2) {
     switch (choice) {
       case '1': // Addition
+        //the add method of the Calculator class is called to perform addition.
+        //the add method takes two parameters: num1 and num2, which are the numbers to be added.
         final double result = _calculator.add(num1, num2);
         _ui.displayMessage('Addition: $num1 + $num2 = $result');
         break;
@@ -163,6 +175,8 @@ class CalculatorApp {
  */
 class Calculator {
   // Method to add two numbers
+  //a method is a function that is defined inside a class.
+  //the add method takes two parameters: a and b, which are the numbers to be added.
   double add(double a, double b) {
     return a + b;
   }

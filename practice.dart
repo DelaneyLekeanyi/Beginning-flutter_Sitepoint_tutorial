@@ -6,6 +6,8 @@ void main() {
   print('===== CALCULATOR WITH NULL SAFETY =====');
   
   // Get first number from user
+  //stdout is used to write output to the console
+  //stdin is used to read input from the console
   stdout.write('Enter first number: ');
   double? num1 = getDoubleInput();
   
@@ -75,7 +77,10 @@ void main() {
   }
   
   // Ask if user wants to perform division with a custom divisor
-  print('\nWould you like to perform division with a custom divisor? (y/n)');
+  print('\nWould you like to perform division with a custom divisor? (y/n)');//
+  //the readLineSync method is used to read a line of text from the standard input (stdin).
+  //the toLowerCase method is used to convert the input string to lowercase.
+  //this allows us to compare the input in a case-insensitive manner.
   String? response = stdin.readLineSync()?.toLowerCase();
   
   if (response == 'y' || response == 'yes') {
@@ -96,7 +101,11 @@ void main() {
           double result = divide(num1, divisor);
           print('Division with custom divisor: $num1 / $divisor = $result');
         }
-      } catch (e) {
+
+      } 
+      // Handle invalid input for divisor
+      // The catch block is used to handle exceptions that may occur during the execution of the try block.
+      catch (e) {
         print('Invalid input. Using null-safe division.');
         double safeResult = divideWithNullCheck(num1, null);
         print('Safe division result: $safeResult');
