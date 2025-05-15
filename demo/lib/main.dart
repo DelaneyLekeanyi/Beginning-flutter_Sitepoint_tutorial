@@ -1,3 +1,6 @@
+import 'dart:math';
+import 'sci-cal.dart';
+
 import 'package:flutter/material.dart';
 /*the material.dart library is a part of the flutter framework that provides a set of widgets and tools for building beautiful and responsive user interfaces using the Material Design guidelines.
 it includes widgets for layout, navigation, input, and more, allowing developers to create visually appealing and user-friendly applications for both Android and iOS platforms.
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 54, 104, 219)),
 
       ),
-      home: const MyHomePage(title: 'Registration Form'),
+      home: const MyHomePage(title: 'Simple Calculator'),
     );
   }
 }
@@ -60,20 +63,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   //controllers for the text fields
   //the TextEditingController class is used to control the text being edited in a text field. It allows you to read and modify the text in the field.
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _dobController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController(); 
-  final TextEditingController _passwordController = TextEditingController();
+  
   //the initState method is called when the state object is created. It is used to initialize any data or state that the widget needs before it is built.
 
-  String name = '';
-  String email = '';
-  String phone = '';
-  String dob = '';
-  String address = '';
-  String password = '';
+  
   
 
   @override
@@ -92,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.white,
       body: Padding(
         
-        padding: const EdgeInsets.only(top:40.0),
+        padding: const EdgeInsets.only(top:45.0),
         child: SingleChildScrollView(
           child : Padding(
             padding : const EdgeInsets.all(25.0),
@@ -100,10 +93,26 @@ class _MyHomePageState extends State<MyHomePage> {
             //the 
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+
+              //text widget is used to display a string of text in the UI. It can be styled with different fonts, colors, and sizes.
+              const Text(
+                'Welcome to the Simple Calculator',
+                style: TextStyle(
+                  fontSize: 20,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Color.fromARGB(255, 57, 105, 196),
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 57, 105, 196),
+                ),
+                 //center the text in the center of the screen
+                textAlign: TextAlign.center,
+                
+              ),
+               SizedBox(height: 30),
               // Name field
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'Full Name',
+                  labelText: 'Enter the first number',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
                     borderSide: const BorderSide(
@@ -112,7 +121,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   
-                  prefixIcon: Icon(Icons.person),
                 ),
               ),
               //the sizedBox widget is used to create a fixed-size box with a specified height or width. It can be used to add space between widgets or to create a specific size for a widget.
@@ -120,9 +128,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
               //Email field
               TextField(
-                
                 decoration: InputDecoration(
-                  labelText: 'Email',
+                  labelText: 'Enter the second number',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
                     borderSide: const BorderSide(
@@ -130,121 +137,137 @@ class _MyHomePageState extends State<MyHomePage> {
                       //width: 2.0,
                     ),
                   ),
-                  prefixIcon: Icon(Icons.email),
+                 
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 35),
 
-              // Phone number field
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Phone Number',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                    borderSide: const BorderSide(
-                      //color: Color.fromARGB(255, 57, 105, 196),
-                      //width: 2.0,
+              //text widget is used to display a string of text in the UI. It can be styled with different fonts, colors, and sizes.
+              const Text(
+                      'Choose an operation',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 57, 105, 196),
+                        
+                      ),
                     ),
-                  ),
-                  prefixIcon: Icon(Icons.phone),
-                ),
-              ),
-              SizedBox(height: 20),
-
-              //date of birth field
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Date of Birth',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                    borderSide: const BorderSide(
-                      //color: Color.fromARGB(255, 57, 105, 196),
-                      //width: 2.0,
+                     SizedBox(height: 15),
+                              //4 button that will perform the operations.
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    
+                    ElevatedButton(
+                      onPressed: () {
+                        // Addition logic here
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 57, 105, 196),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: const Icon(Icons.add, color: Colors.white),
                     ),
-                  ),
-                  prefixIcon: Icon(Icons.calendar_today),
-                ),
-              ),
-               SizedBox(height: 20),
-
-
-              //Address field
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Address',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                    borderSide: const BorderSide(
-                      //color: Color.fromARGB(255, 57, 105, 196),
-                      //width: 2.0,
+                    ElevatedButton(
+                      onPressed: () {
+                        // Subtraction logic here
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 57, 105, 196),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: const Icon(Icons.remove, color: Colors.white),
                     ),
-                  ),
-                  prefixIcon: Icon(Icons.home),
-                ),
-              ),
-              SizedBox(height: 20),
-            
-              // Password field
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                    borderSide: const BorderSide(
-                      //color: Color.fromARGB(255, 57, 105, 196),
-                      //width: 2.0,
+                    ElevatedButton(
+                      onPressed: () {
+                        // Multiplication logic here
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 57, 105, 196),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: const Icon(Icons.clear, color: Colors.white), // 'clear' is a multiplication symbol
                     ),
-                  ),
-                  prefixIcon: Icon(Icons.lock),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Division logic here
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 57, 105, 196),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
+                      child: const Icon(Icons.percent, color: Colors.white), // or use Icons.horizontal_rule for division
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(height: 40),
+              SizedBox(height: 45),
 
-              // submit button
-              ElevatedButton(
-                onPressed: () {
-                  // Handle form submission
-                  setState(() {
-                    // Get the values from the text fields
-                    String name = _nameController.text;
-                    String email = _emailController.text;
-                    String phone = _phoneController.text;
-                    String dob = _dobController.text;
-                    String address = _addressController.text;
-                    String password = _passwordController.text;
-
-                    // Clear the text fields after submission
-                    _nameController.clear();
-                    _emailController.clear();
-                    _phoneController.clear();
-                    _dobController.clear();
-                    _addressController.clear();
-                    _passwordController.clear();
-                  });
-
-                  // Perform your form submission logic here
-                  print('Name: $name');
-                  print('Email: $email'); 
-                  print('Phone: $phone');
-                  print('Date of Birth: $dob');
-                  print('Address: $address');
-                  print('Password: $password');
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0), // Rounded corners for the button
-                  ),
-                  padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
-                  backgroundColor: const Color.fromARGB(255, 57, 105, 196), // Button color
+                 Row(
+                  children: [
+                    const Text('The Result is:', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color.fromARGB(255, 57, 105, 196))),
+                    
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                child: const Text(
-                  'Submit',
-                  style: TextStyle(fontSize: 18, color: Colors.white), // Text style
-                ),
-              ),
               
-              
+
+              SizedBox(height: 40), // Add some space before the navigation buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      // Handle previous action
+                    },
+                    //icon: const Icon(Icons.arrow_back, color: Colors.white),
+                    label: const Text('Cal-Form'
+                      , style: TextStyle(color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 57, 105, 196),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SecondScreen()),
+                      );
+                    },
+                    icon: const Icon(Icons.calculate, color: Colors.white),
+                    label: const Text('Sci-Calculator',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(91, 57, 106, 196),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
           )
